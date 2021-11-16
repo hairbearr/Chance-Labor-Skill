@@ -1,0 +1,605 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "MoveCamera",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 510243913783478
+		},
+		{
+			"eventType": "variable",
+			"name": "FireOrder",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 563718693202711
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 383182752989622
+				}
+			],
+			"actions": [],
+			"sid": 261971754895203,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 666793151199900,
+							"parameters": {
+								"variable": "MoveCamera"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 896706094824259,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "BulletSpawner",
+									"sid": 475946755366451,
+									"parameters": {
+										"instance-variable": "FireNumber",
+										"comparison": 0,
+										"value": "FireOrder"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "BulletSpawner",
+									"sid": 279791551786990,
+									"parameters": {
+										"instance-variable": "Fire",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 819812708701156
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "BulletSpawner",
+									"sid": 541051495377334,
+									"parameters": {
+										"instance-variable": "FireNumber",
+										"comparison": 1,
+										"value": "FireOrder"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "BulletSpawner",
+									"sid": 532080430149291,
+									"parameters": {
+										"instance-variable": "Fire",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 742320703048482
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "healthText",
+							"sid": 452168001813251,
+							"parameters": {
+								"text": "\"Health: \" & Player.CurrentHealth & \"/\" & Player.MaxHealth"
+							}
+						}
+					],
+					"sid": 978198569978399
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "CameraMover",
+					"sid": 892719196001322,
+					"parameters": {
+						"object": "CameraStopper"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "stop",
+					"objectClass": "CameraMover",
+					"sid": 817926638481604,
+					"behaviorType": "MoveTo"
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 892241219213353,
+					"parameters": {
+						"variable": "MoveCamera",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-collisions-enabled",
+					"objectClass": "PowerUp_Health",
+					"sid": 580782350504045,
+					"parameters": {
+						"collisions": "enabled"
+					}
+				},
+				{
+					"id": "set-collisions-enabled",
+					"objectClass": "PowerUp_Speed",
+					"sid": 392205710749720,
+					"parameters": {
+						"collisions": "enabled"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "PowerUp_Health",
+					"sid": 967156533590182,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "PowerUp_Speed",
+					"sid": 513049328022332,
+					"parameters": {
+						"visibility": "visible"
+					}
+				}
+			],
+			"sid": 398197937650614
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Player",
+					"sid": 871863184145818,
+					"parameters": {
+						"object": "Death"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 284534154784636
+				}
+			],
+			"sid": 210466254391663
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 606449345557393,
+					"parameters": {
+						"interval-seconds": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 889132126418031,
+					"parameters": {
+						"variable": "FireOrder",
+						"value": "round(random(1,2))"
+					}
+				}
+			],
+			"sid": 893772254360643
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-distance-travelled",
+					"objectClass": "Bullet",
+					"sid": 578631132790161,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"comparison": 0,
+						"distance": "150"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Bullet",
+					"sid": 772632812116619
+				}
+			],
+			"sid": 268348425516080
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 419322291345821,
+					"parameters": {
+						"key": 69
+					}
+				}
+			],
+			"actions": [],
+			"sid": 595401071239367,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 863160264074702,
+							"parameters": {
+								"object": "PowerUp_Health"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 703000405619443,
+							"parameters": {
+								"instance-variable": "MaxHealth",
+								"value": "10"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 936443524807372,
+							"parameters": {
+								"instance-variable": "CurrentHealth",
+								"value": "Player.MaxHealth"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "CameraMover",
+							"sid": 548240065633844,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"object": "CameraStopper2",
+								"image-point": "0",
+								"mode": "direct"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp_Health",
+							"sid": 388245609772501
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp_Speed",
+							"sid": 972841594282063
+						}
+					],
+					"sid": 718980388927994
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 268261104866174,
+							"parameters": {
+								"object": "PowerUp_Speed"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-max-speed",
+							"objectClass": "Player",
+							"sid": 714009433124547,
+							"behaviorType": "Platform",
+							"parameters": {
+								"max-speed": "Player.Platform.MaxSpeed + 50"
+							}
+						},
+						{
+							"id": "move-to-object",
+							"objectClass": "CameraMover",
+							"sid": 760978841276448,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"object": "CameraStopper2",
+								"image-point": "0",
+								"mode": "direct"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp_Speed",
+							"sid": 724220007923486
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp_Health",
+							"sid": 149221408196554
+						}
+					],
+					"sid": 577150899915253
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Bullet",
+					"sid": 574712895714942,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Player",
+					"sid": 457638638381485,
+					"parameters": {
+						"instance-variable": "CurrentHealth",
+						"value": "1"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Bullet",
+					"sid": 854434852606876
+				}
+			],
+			"sid": 266299694777947
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 763193859007666,
+					"parameters": {
+						"instance-variable": "CurrentHealth",
+						"comparison": 3,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 349400252867305
+				}
+			],
+			"sid": 302541312306413
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 338348440150477
+				}
+			],
+			"actions": [
+				{
+					"id": "set-instvar-value",
+					"objectClass": "BulletSpawner",
+					"sid": 471258811935740,
+					"parameters": {
+						"instance-variable": "FireNumber",
+						"value": "round(random(1,2))"
+					}
+				},
+				{
+					"id": "reset-global-variables",
+					"objectClass": "System",
+					"sid": 799657377641294
+				},
+				{
+					"id": "move-to-object",
+					"objectClass": "CameraMover",
+					"sid": 411694578948866,
+					"behaviorType": "MoveTo",
+					"parameters": {
+						"object": "CameraStopper",
+						"image-point": "0",
+						"mode": "direct"
+					}
+				}
+			],
+			"sid": 291066416348121
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-moving",
+					"objectClass": "CameraMover",
+					"sid": 867419433257410,
+					"behaviorType": "MoveTo"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 327283804386719,
+					"parameters": {
+						"variable": "MoveCamera",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 904116056462060
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-moving",
+					"objectClass": "CameraMover",
+					"sid": 675589044960617,
+					"behaviorType": "MoveTo",
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 601022263422381,
+					"parameters": {
+						"variable": "MoveCamera",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-boolean-instvar",
+					"objectClass": "BulletSpawner",
+					"sid": 142065623722453,
+					"parameters": {
+						"instance-variable": "Fire",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 303264081062225
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "BulletSpawner",
+					"sid": 818314220907792,
+					"parameters": {
+						"instance-variable": "Fire"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "acquire-target",
+					"objectClass": "BulletSpawner",
+					"sid": 428215328083147,
+					"behaviorType": "Turret",
+					"parameters": {
+						"target": "Player"
+					}
+				}
+			],
+			"sid": 799575178686809
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "BulletSpawner",
+					"sid": 831758155597335,
+					"parameters": {
+						"instance-variable": "Fire"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "unacquire-target",
+					"objectClass": "BulletSpawner",
+					"sid": 995944339133863,
+					"behaviorType": "Turret"
+				}
+			],
+			"sid": 440809345414571
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-shoot",
+					"objectClass": "BulletSpawner",
+					"sid": 841604387651006,
+					"behaviorType": "Turret"
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "BulletSpawner",
+					"sid": 242186497648947,
+					"parameters": {
+						"object": "Bullet",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "set-speed",
+					"objectClass": "Bullet",
+					"sid": 781622272956495,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"speed": "400"
+					}
+				}
+			],
+			"sid": 531096349309262
+		}
+	],
+	"sid": 785913240283191
+}

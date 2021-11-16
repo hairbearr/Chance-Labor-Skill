@@ -1,0 +1,61 @@
+{
+	"name": "Player",
+	"plugin-id": "Sprite",
+	"sid": 774062261790905,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "CurrentHealth",
+			"type": "number",
+			"desc": "",
+			"sid": 625277279865666
+		},
+		{
+			"name": "MaxHealth",
+			"type": "number",
+			"desc": "",
+			"sid": 554855364059252
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Platform",
+			"name": "Platform",
+			"sid": 397804999645081
+		},
+		{
+			"behaviorId": "bound",
+			"name": "BoundToLayout",
+			"sid": 942584757611105
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 16,
+						"height": 16,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5596968,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 339017529725280,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
